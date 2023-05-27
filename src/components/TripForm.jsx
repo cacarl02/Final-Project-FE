@@ -79,25 +79,6 @@ const TripForm = (props) => {
         }
         return options
     }
-    console.log(departureTime, capacity)
-    const DepartureAndCapacity = () => {
-
-        return(
-            <div>
-                <div>
-                    <label>Departure:</label>
-                    <select value={departureTime} onChange={(e) => setDepartureTime(e.target.value)}>
-                        <option value="">Select Departure</option>
-                        {generateDepartureOptions()}
-                    </select>
-                </div>
-                <div>
-                    <label>Capacity:</label>
-                    <input type="number" value={capacity} onChange={(e) => setCapacity(e.target.value)} />
-                </div>
-            </div>
-        )
-    }
 
     const postTrip = async (e) => {
         e.preventDefault()
@@ -133,7 +114,19 @@ const TripForm = (props) => {
         <form>
             <ChooseBound />
             { bound && <ChooseDestination /> }
-            <DepartureAndCapacity />
+            <div>
+                <div>
+                    <label>Departure:</label>
+                    <select value={departureTime} onChange={(e) => setDepartureTime(e.target.value)}>
+                        <option value="">Select Departure</option>
+                        {generateDepartureOptions()}
+                    </select>
+                </div>
+                <div>
+                    <label>Capacity:</label>
+                    <input type="number" value={capacity} onChange={(e) => setCapacity(e.target.value)} />
+                </div>
+            </div>
             <button type="submit" onClick={postTrip}>Create Trip</button>
         </form>
     )

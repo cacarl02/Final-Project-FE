@@ -44,10 +44,6 @@ const Settings = (props) => {
         </span>
       )
     }
-
-    const updateBalance = () => {
-
-    }
       
     const formattedDate = new Date(userData.created_at).toLocaleDateString()
     return(
@@ -63,9 +59,8 @@ const Settings = (props) => {
           <span>Available Balance: ₱ {userData.balance}</span>
           <button>Top-up</button>
         </div>
-        <UserEditForm loginToken={loginToken} userData={userData} />
         <button onClick={editUser}>Edit</button>
-        <button onClick={updateBalance}>Update</button>
+        {userFormPopup && <UserEditForm loginToken={loginToken} userData={userData} setUserFormPopup={setUserFormPopup} />}
       </>
     )
 }
