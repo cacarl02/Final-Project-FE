@@ -1,11 +1,13 @@
 import { useEffect, useState } from 'react'
 import { MdVerified } from 'react-icons/md'
 import UserEditForm from '../components/UserEditForm'
+import TopUpForm from '../components/UserTopUpForm'
 
 const Settings = (props) => {
     const { loginToken, userId } = props
     const [userData, setUserData] = useState('')
     const [userFormPopup, setUserFormPopup] = useState(false)
+    const [topUpFormPopup, setTopUpFormPopup] = useState(false)
 
     const fetchUserData = async () => {
       try{
@@ -27,7 +29,7 @@ const Settings = (props) => {
 
     useEffect(() => {
       fetchUserData()
-    }, [loginToken])
+    }, [loginToken, topUpFormPopup, userFormPopup])
 
     const editUser = () => {
       setUserFormPopup(!userFormPopup)
@@ -57,9 +59,10 @@ const Settings = (props) => {
         <div>Date Created: {formattedDate}</div>
         <div className='flex'>
           <span>Available Balance: ₱ {userData.balance}</span>
-          <button>Top-up</button>
+          <button onClick={() => setTopUpFormPopup(!topUpFormPopup)}>Top-up</button>
         </div>
         <button onClick={editUser}>Edit</button>
+        {topUpFormPopup && <TopUpForm loginToken={loginToken} userData={userData} setTopUpFormPopup={setTopUpFormPopup}/>}
         {userFormPopup && <UserEditForm loginToken={loginToken} userData={userData} setUserFormPopup={setUserFormPopup} />}
       </>
     )

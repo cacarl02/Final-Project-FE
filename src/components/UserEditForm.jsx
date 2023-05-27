@@ -28,7 +28,7 @@ function UserEditForm(props) {
             })
             const data = await response.json()
             setFetchedMessage(data.message)
-            setUserFormPopup(fetchedMessage ? false : true)
+            setUserFormPopup(data.message ? false : true)
             console.log(fetchedMessage)
         }
         catch(error){
