@@ -29,6 +29,10 @@ const PendingTrips = (props) => {
 
     useEffect(() => {
         pendingTripsList()
+        const interval = setInterval(pendingTripsList, 5000)
+        return () => {
+            clearInterval(interval)
+        }
     }, [bookConfirm])
 
     const getPendingTripsData = (obj) => {

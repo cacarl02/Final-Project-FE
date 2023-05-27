@@ -31,6 +31,10 @@ const Trips = (props) => {
         if(tripComplete) {
             setTripComplete(false)
         }
+        const interval = setInterval(fetchTrip, 5000)
+        return () => {
+            clearInterval(interval)
+        }
     }, [tripComplete])
 
     const format = { hour: '2-digit', minute: '2-digit', hour12: false, timeZone: 'UTC', timeZoneOffset: 480}
