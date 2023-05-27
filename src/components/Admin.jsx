@@ -1,11 +1,15 @@
 import { useState, useEffect } from "react"
 import FlashMessage from "../utilities/FlashMessage"
+import AdminSeeUser from "./AdminSeeUser"
 
 
 const Admin = (props) => {
     const { loginToken } = props
     const [userList, setUserList] = useState([])
     const [fetchMessage, setFetchMessage] = useState('')
+
+    const [seeUser, setSeeUser] = useState(false)
+    const [selectedUser, setSelectedUser] = useState('')
     const getUserList = async() => {
 
         try{
@@ -39,6 +43,7 @@ const Admin = (props) => {
             setFetchMessage(patchMessage.message)
             console.log(fetchMessage)
             getUserList()
+            setSeeUser(false)
         }
         catch(error){
             console.error(error)
@@ -48,18 +53,22 @@ const Admin = (props) => {
         getUserList();
       }, []); 
 
+    const getSelectedUser = (obj) => {
+        setSelectedUser(obj)
+        setSeeUser(true)
+    }
+
     const Users = () => {
         return(
             <>
                 {
                     userList && userList.length ? userList.map((obj) => 
                     (
-                        <div className="flex empty" key={obj.id}>
+                        <div className="flex empty" key={obj.id} onClick={() => getSelectedUser(obj)}>
                             <div>{obj.id}</div>
                             <div>{obj.role}</div>
                             <div>{obj.email}</div>
                             <div>{obj.is_verified.toString()}</div>
-                            <button onClick={() => verifyUser(obj.id)}>{obj.is_verified ? 'Unverify' : 'Verify'}</button>
                         </div>
                     ))
                     : <div>No users yet.</div>
@@ -71,6 +80,13 @@ const Admin = (props) => {
         <>
             <Users />
             <FlashMessage fetchMessage={fetchMessage} />
+            {seeUser && <AdminSeeUser
+                selectedUser={selectedUser}
+                setSeeUser={setSeeUser} 
+                loginToken={loginToken} 
+                getUserList={getUserList} 
+                verifyUser={verifyUser}
+            />}
         </>
     )
 }
