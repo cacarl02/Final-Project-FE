@@ -4,14 +4,13 @@ import UserEditForm from '../components/UserEditForm'
 import TopUpForm from '../components/UserTopUpForm'
 
 const Settings = (props) => {
-    const { loginToken, userId } = props
-    const [userData, setUserData] = useState('')
+    const { loginToken, userData, setUserData } = props
+    const [settingsData, setSettingsData] = useState('')
     const [userFormPopup, setUserFormPopup] = useState(false)
     const [topUpFormPopup, setTopUpFormPopup] = useState(false)
-
-    const fetchUserData = async () => {
+    const fetchsettingsData = async () => {
       try{
-        const response = await fetch (`http://localhost:3001/users/${userId}`, {
+        const response = await fetch (`http://localhost:3001/users/${userData.id}`, {
             method : "GET",
             headers : {
                 "Content-type": "application/json",
@@ -19,8 +18,7 @@ const Settings = (props) => {
             }
         })
         const fetchedData = await response.json()
-        setUserData(fetchedData)
-        console.log(userData)
+        setSettingsData(fetchedData)
       }
       catch(error){
           console.error(error)
@@ -28,18 +26,17 @@ const Settings = (props) => {
     }
 
     useEffect(() => {
-      fetchUserData()
+      fetchsettingsData()
     }, [loginToken, topUpFormPopup, userFormPopup])
 
     const editUser = () => {
       setUserFormPopup(!userFormPopup)
-      console.log(userFormPopup)
     }
     const UserNameData = () => {
       return (
         <span>
-          {userData.firstname && userData.lastname ? (
-              <p>{`${userData.firstname} ${userData.lastname}`}</p>
+          {settingsData.firstname && settingsData.lastname ? (
+              <p>{`${settingsData.firstname} ${settingsData.lastname}`}</p>
           ) : (
             <p>No user data yet</p>
           )}
@@ -47,23 +44,23 @@ const Settings = (props) => {
       )
     }
       
-    const formattedDate = new Date(userData.created_at).toLocaleDateString()
+    const formattedDate = new Date(settingsData.created_at).toLocaleDateString()
     return(
       <>
-        <img src={userData.photoData} alt='' />
+        <img src={settingsData.photoData} alt='' />
         <div className="text-3xl flex">
           <UserNameData />
-          {userData.isVerified && <MdVerified className='text-blue-500' />}
+          {settingsData.isVerified && <MdVerified className='text-blue-500' />}
         </div>
-        <div>Role: {userData.role ? `${userData.role}`.charAt(0).toUpperCase() + `${userData.role}`.slice(1) : 'N/A'}</div>
+        <div>Role: {settingsData.role ? `${settingsData.role}`.charAt(0).toUpperCase() + `${settingsData.role}`.slice(1) : 'N/A'}</div>
         <div>Date Created: {formattedDate}</div>
         <div className='flex'>
-          <span>Available Balance: ₱ {userData.balance}</span>
+          <span>Available Balance: ₱ {settingsData.balance}</span>
           <button onClick={() => setTopUpFormPopup(!topUpFormPopup)}>Top-up</button>
         </div>
         <button onClick={editUser}>Edit</button>
-        {topUpFormPopup && <TopUpForm loginToken={loginToken} userData={userData} setTopUpFormPopup={setTopUpFormPopup}/>}
-        {userFormPopup && <UserEditForm loginToken={loginToken} userData={userData} setUserFormPopup={setUserFormPopup} />}
+        {topUpFormPopup && <TopUpForm loginToken={loginToken} settingsData={settingsData} setTopUpFormPopup={setTopUpFormPopup}/>}
+        {userFormPopup && <UserEditForm loginToken={loginToken} settingsData={settingsData} setUserFormPopup={setUserFormPopup} userData={userData} setUserData={setUserData} />}
       </>
     )
 }

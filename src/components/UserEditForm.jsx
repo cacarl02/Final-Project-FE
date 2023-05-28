@@ -1,12 +1,11 @@
-import e from 'cors';
 import React, { useState } from 'react'
 
 function UserEditForm(props) {
-    const { userData, loginToken, setUserFormPopup } = props
-    const [firstname, setFirstname] = useState(`${userData.firstname}`);
-    const [lastname, setLastname] = useState(`${userData.lastname}`);
-    const [image, setImage] = useState(userData.photo_data);
-    const [role, setRole] = useState(`${userData.role}`);
+    const { settingsData, loginToken, setUserFormPopup, setUserData, userData } = props
+    const [firstname, setFirstname] = useState(`${settingsData.firstname}`);
+    const [lastname, setLastname] = useState(`${settingsData.lastname}`);
+    const [image, setImage] = useState(settingsData.photo_data);
+    const [role, setRole] = useState(`${settingsData.role}`);
 
     const [fetchedMessage, setFetchedMessage] = useState('')
 
@@ -28,8 +27,8 @@ function UserEditForm(props) {
             })
             const data = await response.json()
             setFetchedMessage(data.message)
+            setUserData(data.user)
             setUserFormPopup(data.message ? false : true)
-            console.log(fetchedMessage)
         }
         catch(error){
             console.error(error)

@@ -8,7 +8,7 @@ const Home = (props) => {
         if(userData.role === 'admin') {
             return <Admin userData={userData} loginToken={loginToken} />
         } else if(userData.role === 'operator') {
-            return <Trips userData={userData} loginToken={loginToken} />
+            return <Trips loginToken={loginToken} />
         } else if (userData.role === 'commuter') {
             return <Bookings userData={userData} loginToken={loginToken} />
         } else {
@@ -20,10 +20,10 @@ const Home = (props) => {
         }
     }
     return(
-        <>
+        <main>
             <div>Hello {userData.firstname}!</div>
             <RenderHome />
-        </>
+        </main>
     )
 }
 

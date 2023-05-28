@@ -1,13 +1,13 @@
 import React, { useState } from 'react'
 
 const TopUpForm = (props) => {
-    const { loginToken, userData, setTopUpFormPopup } = props
+    const { loginToken, settingsData, setTopUpFormPopup } = props
     const [addbalance, setAddBalance] = useState('')
     const [fetchedMessage, setFetchedMessage] = useState('')
     const patchBalance = async (e) => {
         e.preventDefault()
         try{
-            const response = await fetch (`http://localhost:3001/users/${userData.id}/topup_balance`, {
+            const response = await fetch (`http://localhost:3001/users/${settingsData.id}/topup_balance`, {
                 method : "PATCH",
                 headers : {
                     "Content-type": "application/json",
