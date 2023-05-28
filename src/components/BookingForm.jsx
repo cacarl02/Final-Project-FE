@@ -50,7 +50,7 @@ const BookingForm = (props) => {
                     "Authorization": `${loginToken}`
                 },
                 body : JSON.stringify({
-                    start: `${destinationsData[0].destination_id}`,
+                    start: `${destinationsData[0].destination}`,
                     end: `${selectedDestination.destination}`,
                     trip_id: `${selectedPendingTrip.id}`,
                     amount: `${selectedDestination.fare}`,
@@ -64,7 +64,6 @@ const BookingForm = (props) => {
                 navigate('/')
             } else {
                 setErrorMessage(fetchData.error ? fetchData.error : "")
-                console.log(errorMessage)
             }
         }
         catch(error){
