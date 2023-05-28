@@ -41,7 +41,6 @@ const Admin = (props) => {
             })
             const patchMessage = await response.json()
             setFetchMessage(patchMessage.message)
-            console.log(fetchMessage)
             getUserList()
             setSeeUser(false)
         }
@@ -82,9 +81,6 @@ const Admin = (props) => {
             <FlashMessage fetchMessage={fetchMessage} />
             {seeUser && <AdminSeeUser
                 selectedUser={selectedUser}
-                setSeeUser={setSeeUser} 
-                loginToken={loginToken} 
-                getUserList={getUserList} 
                 verifyUser={verifyUser}
             />}
         </>

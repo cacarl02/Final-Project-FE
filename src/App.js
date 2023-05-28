@@ -49,7 +49,7 @@ function App() {
                   bookConfirm={bookConfirm}
                   setBookConfirm={setBookConfirm} />}></Route>
           <Route path='history' element={<History loginToken={loginToken} userData={userData} />}></Route>
-          <Route path='settings' element={<Settings loginToken={loginToken} userId={userData.id} />}></Route>
+          <Route path='settings' element={<Settings loginToken={loginToken} userData={userData} setUserData={setUserData} />}></Route>
         </Routes>
       </BrowserRouter>
     </>

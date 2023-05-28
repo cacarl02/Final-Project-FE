@@ -1,7 +1,7 @@
 import React from 'react'
 
 const AdminSeeUser = (props) => {
-    const { selectedUser, loginToken, verifyUser } = props
+    const { selectedUser, verifyUser } = props
 
     const formattedDate = new Date(selectedUser.created_at).toLocaleDateString()
   return (
