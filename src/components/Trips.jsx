@@ -1,13 +1,17 @@
 import { useEffect, useState } from "react"
 import TripForm from './TripForm';
+import TripsSeeBookings from "./TripsSeeBookings";
 
 
 const Trips = (props) => {
-    const { loginToken, userData } = props
+    const { loginToken } = props
     const [tripsList, setTripsList] = useState([])
 
     const [showForm, setShowForm] = useState(false)
     const [tripComplete, setTripComplete] = useState(false)
+
+    const [selectedTrip, setSelectedTrip] = useState('')
+    const [seeBookings, setSeeBookings] = useState(false)
 
     const fetchTrip = async () => {
         try{
@@ -35,7 +39,12 @@ const Trips = (props) => {
         return () => {
             clearInterval(interval)
         }
-    }, [tripComplete])
+    }, [tripComplete, selectedTrip.status])
+
+    const getTripDetails = (obj) => {
+        setSelectedTrip(obj)
+        setSeeBookings(true)
+    }
 
     const format = { hour: '2-digit', minute: '2-digit', hour12: false, timeZone: 'UTC', timeZoneOffset: 480}
     const RenderTrips = () => {
@@ -44,7 +53,7 @@ const Trips = (props) => {
                 {
                     tripsList && tripsList.length ? tripsList.map((obj) => 
                     (
-                        <div key={obj.id}>
+                        <div key={obj.id} onClick={() => getTripDetails(obj)}>
                             <div>{obj.start.charAt(0).toUpperCase() + obj.start.slice(1)} to {obj.end.charAt(0).toUpperCase() + obj.end.slice(1)}</div>
                             <div>{new Date(obj.departure).toLocaleString([], format)}</div>
                             <div>{obj.capacity - obj.total_passengers} available seats left</div>
@@ -63,7 +72,21 @@ const Trips = (props) => {
         <>
             <RenderTrips />
             {
-                showForm && <TripForm loginToken={loginToken} userData={userData} setTripComplete={setTripComplete} />
+                showForm && 
+                <TripForm 
+                    setShowForm={setShowForm}
+                    loginToken={loginToken} 
+                    setTripComplete={setTripComplete} 
+                />
+            }
+            {
+                seeBookings && 
+                <TripsSeeBookings 
+                    loginToken={loginToken} 
+                    setSeeBookings={setSeeBookings} 
+                    selectedTrip={selectedTrip}
+                    setSelectedTrip={setSelectedTrip} 
+                />
             }
         </>
     )

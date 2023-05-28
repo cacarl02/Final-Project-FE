@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 
 
 const TripForm = (props) => {
-    const { loginToken, setTripComplete, userData } = props
+    const { loginToken, setTripComplete, setShowForm } = props
     const [destinationsData, setDestinationsData] = useState([]);
     const [bound, setBound] = useState('')
     
@@ -102,6 +102,7 @@ const TripForm = (props) => {
                 setTripComplete(true)
                 setDestinationsData([])
                 navigate('/')
+                setShowForm(false)
             }
             setErrorMessage(fetchData.error ? fetchData.error : "")
         }
