@@ -76,7 +76,7 @@ const Admin = (props) => {
                                     <tr key={obj.id} onClick={() => getSelectedUser(obj)} className="cursor-pointer">
                                         <td className="py-2 px-4 font-medium text-gray-400">{obj.id}</td>
                                         <td className="py-2 px-4 font-medium text-gray-400">{obj.email}</td>
-                                        <td className="py-2 px-4 font-medium text-gray-400">{obj.is_verified.toString()}</td>
+                                        <td className={`py-2 px-4 font-medium ${obj.is_verified ? 'text-green-700' : 'text-red-700'}`}>{obj.is_verified.toString()}</td>
                                     </tr>
                                 ))
                                 ) : (

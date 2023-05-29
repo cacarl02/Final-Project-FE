@@ -3,7 +3,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { FaBusAlt } from 'react-icons/fa';
 
 function Navbar(props) {
-  const { isLoggedIn, setIsLoggedIn, setLoginToken } = props
+  const { isLoggedIn, setIsLoggedIn, setLoginToken, userData } = props
   const navigate = useNavigate();
   const logout = async () => {
     try{
@@ -24,10 +24,13 @@ function Navbar(props) {
     <nav className='flex items-center justify-between p-4 bg-blue-500'>
       <div className='flex items-center space-x-4'>
           <Link to='/' className='text-red-500 text-3xl mr-10'><FaBusAlt /></Link>
-          <Link to="/bookings" className='text-white hover:text-gray-200'>Bookings</Link>
-          <Link to="/trips" className='text-white hover:text-gray-200'>Trips</Link>
-          <Link to="/pending_trips" className='text-white hover:text-gray-200'>Pending Trips</Link>
-          <Link to="/history" className='text-white hover:text-gray-200'>History</Link>
+          {
+            userData.role != 'admin' &&
+            <>
+              <Link to="/pending_trips" className='text-white hover:text-gray-200'>Pending Trips</Link>
+              <Link to="/history" className='text-white hover:text-gray-200'>History</Link>      
+            </>
+          }
       </div>
       <div className='flex items-center space-x-4'>
           <Link to="/settings" className='text-white hover:text-gray-200'>Settings</Link>

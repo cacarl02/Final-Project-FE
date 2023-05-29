@@ -34,7 +34,9 @@ const AdminSeeUser = (props) => {
           </div>
           <div>Role: {selectedUser.role ? `${selectedUser.role}`.charAt(0).toUpperCase() + `${selectedUser.role}`.slice(1) : 'N/A'}</div>
           <div>Email: {selectedUser.email}</div>
-          <div>Verified: {selectedUser.is_verified.toString()}</div>
+          <div>
+            Verified: <span className={`${selectedUser.is_verified ? 'text-green-700' : 'text-red-700'}`}>{selectedUser.is_verified.toString()}</span>
+          </div>
           <button 
             onClick={() => verifyUser(selectedUser.id)}
             className={`px-4 py-1 mt-4 text-white rounded ${ selectedUser.is_verified ? 'bg-red-500 hover:bg-red-600' : 'bg-green-500 hover:bg-green-500'}`}

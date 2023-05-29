@@ -21,7 +21,7 @@ function App() {
   return (
     <main className='relative h-screen bg-gray-50 dark:bg-gray-900'>
       <BrowserRouter>
-      <Navbar isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} setLoginToken={setLoginToken} />
+      <Navbar isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} setLoginToken={setLoginToken} userData={userData} />
         <Routes>
           <Route
             exact path='/'
