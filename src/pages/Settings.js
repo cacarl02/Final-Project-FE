@@ -46,8 +46,8 @@ const Settings = (props) => {
       
     const formattedDate = new Date(settingsData.created_at).toLocaleDateString()
     return(
-      <div className='p-10 bg-gray-50 dark:bg-gray-700 m-5 rounded-lg shadow text-white grid grid-cols-2'>
-        <div>
+      <div className='py-10 px-4 bg-gray-50 dark:bg-gray-700 m-5 rounded-lg shadow text-white grid grid-cols-2'>
+        <div className='px-3'>
           <img src={settingsData.photoData} alt='' />
           <div>image</div>
           <div>Date Created: {formattedDate}</div>
@@ -59,7 +59,7 @@ const Settings = (props) => {
             </button>
           </div>
         </div>
-        <div>
+        <div className='px-3'>
           <div className="text-3xl flex pb-5">
             <UserNameData />
             {settingsData.is_verified && <MdVerified className='text-yellow-500 ml-3' />}

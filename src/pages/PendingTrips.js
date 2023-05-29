@@ -36,8 +36,10 @@ const PendingTrips = (props) => {
     }, [bookConfirm])
 
     const getPendingTripsData = (obj) => {
-        setSelectedPendingTrip(obj)
-        setShowForm(true)
+        if(userData.role === 'commuter') {
+            setSelectedPendingTrip(obj)
+            setShowForm(true)
+        }
     }
 
     const format = { hour: '2-digit', minute: '2-digit', hour12: false, timeZone: 'UTC', timeZoneOffset: 480}

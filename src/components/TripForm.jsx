@@ -130,7 +130,11 @@ const TripForm = (props) => {
                         </div>
                         <div>
                             <label className="text-gray-400">Capacity: </label>
-                            <input type="number" value={capacity} onChange={(e) => setCapacity(e.target.value)} />
+                            <input 
+                                type="number" 
+                                value={capacity} 
+                                onChange={(e) => setCapacity(e.target.value)} 
+                            />
                         </div>
                     </div>
                 </div>

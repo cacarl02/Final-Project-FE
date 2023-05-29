@@ -43,7 +43,7 @@ const Trips = (props) => {
 
     const getTripDetails = (obj) => {
         setSelectedTrip(obj)
-        setSeeBookings(true)
+        setSeeBookings(!seeBookings)
     }
 
     const format = { hour: '2-digit', minute: '2-digit', hour12: false, timeZone: 'UTC', timeZoneOffset: 480}
