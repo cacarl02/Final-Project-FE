@@ -27,7 +27,7 @@ const Login = (props) => {
             setUserData(loginData.data ? loginData.data : '')
             
             if(loginData.status.code === 200) {
-                setLoginToken(loginHeader.authorization)
+                setLoginToken(authorization)
                 setIsLoggedIn(true)
             }
 
