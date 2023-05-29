@@ -60,18 +60,36 @@ const Admin = (props) => {
     const Users = () => {
         return(
             <>
-                {
-                    userList && userList.length ? userList.map((obj) => 
-                    (
-                        <div className="flex empty" key={obj.id} onClick={() => getSelectedUser(obj)}>
-                            <div>{obj.id}</div>
-                            <div>{obj.role}</div>
-                            <div>{obj.email}</div>
-                            <div>{obj.is_verified.toString()}</div>
-                        </div>
-                    ))
-                    : <div>No users yet.</div>
-                }
+                <div>
+                    <div class="flex justify-center">
+                        <table className="divide-y divide-gray-500">
+                            <thead className="bg-gray-800">
+                                <tr>
+                                <th className="py-2 px-4 text-left font-medium text-gray-400">ID</th>
+                                <th className="py-2 px-4 text-left font-medium text-gray-400">Email</th>
+                                <th className="py-2 px-4 text-left font-medium text-gray-400">Verified</th>
+                                </tr>
+                            </thead>
+                            <tbody className="bg-gray-800 divide-y divide-gray-600">
+                                {userList && userList.length ? (
+                                userList.map((obj) => (
+                                    <tr key={obj.id} onClick={() => getSelectedUser(obj)} className="cursor-pointer">
+                                        <td className="py-2 px-4 font-medium text-gray-400">{obj.id}</td>
+                                        <td className="py-2 px-4 font-medium text-gray-400">{obj.email}</td>
+                                        <td className="py-2 px-4 font-medium text-gray-400">{obj.is_verified.toString()}</td>
+                                    </tr>
+                                ))
+                                ) : (
+                                <tr>
+                                    <td colSpan="4" className="py-4 px-4 text-gray-400 text-center">
+                                    No users yet.
+                                    </td>
+                                </tr>
+                                )}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
             </>
         )
     }

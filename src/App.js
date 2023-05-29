@@ -19,7 +19,7 @@ function App() {
 
 
   return (
-    <>
+    <main className='relative h-screen bg-gray-50 dark:bg-gray-900'>
       <BrowserRouter>
       <Navbar isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} setLoginToken={setLoginToken} />
         <Routes>
@@ -52,7 +52,7 @@ function App() {
           <Route path='settings' element={<Settings loginToken={loginToken} userData={userData} setUserData={setUserData} />}></Route>
         </Routes>
       </BrowserRouter>
-    </>
+    </main>
   );
 }
 

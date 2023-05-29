@@ -20,10 +20,10 @@ const Home = (props) => {
         }
     }
     return(
-        <main>
+        <>
             <div>Hello {userData.firstname}!</div>
             <RenderHome />
-        </main>
+        </>
     )
 }
 

@@ -20,11 +20,12 @@ const TripForm = (props) => {
     const ChooseBound = () => {
         return (
             <div>
-              <select onChange={(e) => setBound(e.target.value)} value={bound}>
-                <option value="">Select Direction</option>
-                <option value="northbound">Northbound</option>
-                <option value="southbound">Southbound</option>
-              </select>
+                <label className="text-gray-400">Direction: </label>
+                <select onChange={(e) => setBound(e.target.value)} value={bound}>
+                    <option value="">Select Direction</option>
+                    <option value="northbound">Northbound</option>
+                    <option value="southbound">Southbound</option>
+                </select>
             </div>
         )
     }
@@ -56,8 +57,8 @@ const TripForm = (props) => {
           }
     return (
         <div>
-            <div>From: {destinationsData[0].destination}</div>
-            <div>To: {destinationsData[destinationsData.length-1].destination}</div>
+            <div className="text-gray-400">From: {destinationsData[0].destination}</div>
+            <div className="text-gray-400">To: {destinationsData[destinationsData.length-1].destination}</div>
         </div>
         );  
     } 
@@ -112,24 +113,32 @@ const TripForm = (props) => {
     }
 
     return(
-        <form>
-            <ChooseBound />
-            { bound && <ChooseDestination /> }
-            <div>
-                <div>
-                    <label>Departure:</label>
-                    <select value={departureTime} onChange={(e) => setDepartureTime(e.target.value)}>
-                        <option value="">Select Departure</option>
-                        {generateDepartureOptions()}
-                    </select>
+        <div className="p-4 bg-gray-50 dark:bg-gray-700 mx-5 rounded-lg shadow mb-4">
+            <form onSubmit={postTrip}>
+                <div className="text-center grid grid-cols-2">
+                    <div>
+                        <ChooseBound />
+                        { bound && <ChooseDestination /> }
+                    </div>
+                    <div>
+                        <div>
+                            <label className="text-gray-400">Departure: </label>
+                            <select value={departureTime} onChange={(e) => setDepartureTime(e.target.value)}>
+                                <option value="">Select Departure</option>
+                                {generateDepartureOptions()}
+                            </select>
+                        </div>
+                        <div>
+                            <label className="text-gray-400">Capacity: </label>
+                            <input type="number" value={capacity} onChange={(e) => setCapacity(e.target.value)} />
+                        </div>
+                    </div>
                 </div>
-                <div>
-                    <label>Capacity:</label>
-                    <input type="number" value={capacity} onChange={(e) => setCapacity(e.target.value)} />
+                <div className="flex justify-center">
+                    <button type="submit" className="text-white mx-10 text-xl bg-primary-600 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800">Create Trip</button>
                 </div>
-            </div>
-            <button type="submit" onClick={postTrip}>Create Trip</button>
-        </form>
+            </form>
+        </div>
     )
 }
 

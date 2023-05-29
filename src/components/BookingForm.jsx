@@ -75,24 +75,34 @@ const BookingForm = (props) => {
     const RenderBookingForm = () => {
         
         return(
-            <div>
-                <div>From: {selectedPendingTrip.start.charAt(0).toUpperCase() + selectedPendingTrip.start.slice(1)}</div>
-                <span>To: </span>
-                <select value={selectedDestinationId} onChange={(e) => setSelectedDestinationId(Number(e.target.value))}>
-                    <option value="">Select a destination</option>
-                    {destinationsData.slice(1).map((obj) => (
-                    <option key={obj.id} value={obj.id}>
-                        {obj.destination}
-                    </option>
-                ))}
-                </select>
-                {selectedDestination && (
-                    <div>Fare: {selectedDestination.fare}</div>
-                )}
-                {userData && selectedDestination && (
-                    <div>Balance after booking: {userData.balance - selectedDestination.fare}</div>
-                )}
-                <button onClick={postBook}>Confirm Booking</button>
+            <div className='p-4 bg-gray-50 dark:bg-gray-700 mx-5 rounded-lg shadow m-4'>
+                <form onSubmit={postBook}>
+                    <div className='grid grid-cols-2 text-center'>
+                        <div className=' text-gray-300'>From: {selectedPendingTrip.start.charAt(0).toUpperCase() + selectedPendingTrip.start.slice(1)}</div>
+                        <div>
+                            <span className=' text-gray-300'>To: </span>
+                            <select value={selectedDestinationId} onChange={(e) => setSelectedDestinationId(Number(e.target.value))}>
+                                <option value="">Select a destination</option>
+                                {destinationsData.slice(1).map((obj) => (
+                                <option key={obj.id} value={obj.id}>
+                                    {obj.destination}
+                                </option>
+                            ))}
+                            </select>                         
+                        </div>
+                    </div>
+                    <div className='text-center text-gray-300'>
+                        {selectedDestination && (
+                            <div>Fare: {selectedDestination.fare}</div>
+                        )}
+                        {userData && selectedDestination && (
+                            <div>Balance after booking: {userData.balance - selectedDestination.fare}</div>
+                        )}
+                    </div>
+                    <div className='flex justify-center'>
+                        <button type='submit' className='text-white mt-4 mx-10 text-xl bg-primary-600 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800'>Confirm Booking</button>
+                    </div>
+                </form>
             </div>
         )
     }

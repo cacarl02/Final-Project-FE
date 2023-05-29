@@ -46,22 +46,35 @@ const Settings = (props) => {
       
     const formattedDate = new Date(settingsData.created_at).toLocaleDateString()
     return(
-      <>
-        <img src={settingsData.photoData} alt='' />
-        <div className="text-3xl flex">
-          <UserNameData />
-          {settingsData.isVerified && <MdVerified className='text-blue-500' />}
+      <div className='p-10 bg-gray-50 dark:bg-gray-700 m-5 rounded-lg shadow text-white grid grid-cols-2'>
+        <div>
+          <img src={settingsData.photoData} alt='' />
+          <div>image</div>
+          <div>Date Created: {formattedDate}</div>
+          <div className='p-6 mt-4 bg-gray-50 dark:bg-gray-600 rounded-lg inline-flex'>
+            <span className='py-1'>Available Balance: ₱ {settingsData.balance}</span>
+            <button 
+              onClick={() => setTopUpFormPopup(!topUpFormPopup)}
+              className='px-3 py-1 ml-4 text-white bg-green-600 rounded hover:bg-green-700'>Top-up
+            </button>
+          </div>
         </div>
-        <div>Role: {settingsData.role ? `${settingsData.role}`.charAt(0).toUpperCase() + `${settingsData.role}`.slice(1) : 'N/A'}</div>
-        <div>Date Created: {formattedDate}</div>
-        <div className='flex'>
-          <span>Available Balance: ₱ {settingsData.balance}</span>
-          <button onClick={() => setTopUpFormPopup(!topUpFormPopup)}>Top-up</button>
+        <div>
+          <div className="text-3xl flex pb-5">
+            <UserNameData />
+            {settingsData.is_verified && <MdVerified className='text-yellow-500 ml-3' />}
+          </div>
+          <div>Role: {settingsData.role ? `${settingsData.role}`.charAt(0).toUpperCase() + `${settingsData.role}`.slice(1) : 'N/A'}</div>
+          <div>Email: {settingsData.email}</div>
+          <button 
+            onClick={editUser}
+            className='px-4 py-1 mt-4 text-white bg-blue-500 rounded hover:bg-blue-600'
+            >Edit
+          </button>
         </div>
-        <button onClick={editUser}>Edit</button>
         {topUpFormPopup && <TopUpForm loginToken={loginToken} settingsData={settingsData} setTopUpFormPopup={setTopUpFormPopup}/>}
         {userFormPopup && <UserEditForm loginToken={loginToken} settingsData={settingsData} setUserFormPopup={setUserFormPopup} userData={userData} setUserData={setUserData} />}
-      </>
+      </div>
     )
 }
 

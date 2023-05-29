@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import { AiOutlineClose } from 'react-icons/ai'
 
 function UserEditForm(props) {
     const { settingsData, loginToken, setUserFormPopup, setUserData, userData } = props
@@ -36,38 +37,49 @@ function UserEditForm(props) {
     }
 
   return (
-    <>
-        <form onSubmit={formSubmit}>
-            <label htmlFor="firstname">First Name:</label>
+    <div className='fixed inset-0 flex items-center justify-center bg-black bg-opacity-60'>
+        <form onSubmit={formSubmit} className='p-10 bg-gray-50 dark:bg-gray-700 m-5 rounded-lg shadow text-white flex flex-col relative'>
+            <button 
+                type='button'
+                onClick={() => setUserFormPopup(false)}
+                className='absolute top-2 right-2 text-2xl hover:text-gray-400'><AiOutlineClose /></button>
+            <label
+                className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">First Name:</label>
             <input 
                 type="text"
                 value={firstname}
                 onChange={(e) => setFirstname(e.target.value)}
+                className='bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500'
             />
-            <label htmlFor="lastname">Last Name:</label>
+            <label 
+                className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Last Name:</label>
             <input 
                 type="text"
                 value={lastname}
                 onChange={(e) => setLastname(e.target.value)}
+                className='bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500'                                    
             />
-            <label htmlFor="image">Photo:</label>
+            <label 
+                className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Photo:</label>
             <input
                 type="file"
                 value={image}
                 onChange={(e) => setImage(e.target.files[0])}
             />
-            <label htmlFor="role">Role: </label>
+            <label 
+                className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Role: </label>
             <select
                 value={role}
                 onChange={(e) => setRole(e.target.value)}
+                className='bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500'
             >
                 <option value="">Select a Role</option>
                 <option value="operator">Operator</option>
                 <option value="commuter">Commuter</option>
             </select>
-            <button type='submit'>Update</button>
+            <button type='submit' className='w-full mt-4 bg-primary-600 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800'>Update</button>
         </form>
-    </>
+    </div>
   )
 }
 
