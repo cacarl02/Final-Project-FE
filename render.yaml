@@ -1,0 +1,7 @@
+version: 1
+buildCommand:
+  - npm run build
+staticSites:
+  - name: my-react-app
+    indexDocument: index.html
+    errorDocument: index.html
