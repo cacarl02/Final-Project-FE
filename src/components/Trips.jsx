@@ -4,7 +4,7 @@ import TripsSeeBookings from "./TripsSeeBookings";
 
 
 const Trips = (props) => {
-    const { loginToken } = props
+    const { loginToken , setUserData } = props
     const [tripsList, setTripsList] = useState([])
 
     const [showForm, setShowForm] = useState(false)
@@ -104,6 +104,7 @@ const Trips = (props) => {
                     setSeeBookings={setSeeBookings} 
                     selectedTrip={selectedTrip}
                     setSelectedTrip={setSelectedTrip} 
+                    setUserData={setUserData}
                 />
             }
         </>

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 
 const TripsSeeBookings = (props) => {
-    const { loginToken, setSeeBookings, selectedTrip, setSelectedTrip } = props
+    const { loginToken, setSeeBookings, selectedTrip, setSelectedTrip, setUserData } = props
 
     const [selectedTripData, setSelectedTripData] = useState([])
     const fetchSelectedTrip = async () => {
@@ -32,6 +32,12 @@ const TripsSeeBookings = (props) => {
         ...prevTrip,
         status: status
       }));
+      if(status === 'completed') {
+          setUserData(prevData => ({
+            ...prevData,
+            balance: parseFloat(selectedTrip.total_amount) + parseFloat(prevData.balance)
+          }))
+      }
       patchTripStatus(status);
     };
 

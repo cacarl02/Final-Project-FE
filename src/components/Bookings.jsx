@@ -4,7 +4,7 @@ import { Link } from "react-router-dom"
 
 
 const Bookings = (props) => {
-    const { loginToken } = props
+    const { loginToken, setUserData } = props
     const [bookingsList, setBookingsList] = useState([])
 
     const [showBooking, setShowBooking] = useState(false)
@@ -65,7 +65,7 @@ const Bookings = (props) => {
     return(
         <main>
             <RenderBookings />
-            {showBooking && <BookingShow loginToken={loginToken} selectedBooking={selectedBooking} setSelectedBooking={setSelectedBooking} setShowBooking={setShowBooking} />}
+            {showBooking && <BookingShow setUserData={setUserData} loginToken={loginToken} selectedBooking={selectedBooking} setSelectedBooking={setSelectedBooking} setShowBooking={setShowBooking} />}
         </main>
     )
 }

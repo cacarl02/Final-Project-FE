@@ -72,7 +72,7 @@ const Settings = (props) => {
             >Edit
           </button>
         </div>
-        {topUpFormPopup && <TopUpForm loginToken={loginToken} settingsData={settingsData} setTopUpFormPopup={setTopUpFormPopup}/>}
+        {topUpFormPopup && <TopUpForm loginToken={loginToken} setUserData={setUserData} settingsData={settingsData} setTopUpFormPopup={setTopUpFormPopup}/>}
         {userFormPopup && <UserEditForm loginToken={loginToken} settingsData={settingsData} setUserFormPopup={setUserFormPopup} userData={userData} setUserData={setUserData} />}
       </div>
     )

@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom';
 
 const BookingForm = (props) => {
-    const { selectedPendingTrip, userData, loginToken, setBookConfirm } = props
+    const { selectedPendingTrip, userData, loginToken, setBookConfirm, setUserData } = props
     const [destinationsData, setDestinationsData] = useState([])
     
     const [selectedDestinationId, setSelectedDestinationId] = useState(null);
@@ -60,6 +60,10 @@ const BookingForm = (props) => {
             const fetchData = await response.json()
             if(!fetchData.error) {
                 setBookConfirm(true)
+                setUserData(prevData => ({
+                    ...prevData,
+                    balance: parseFloat(prevData.balance) - parseFloat(selectedDestination.fare)
+                }))
                 setDestinationsData([])
                 navigate('/')
             } else {

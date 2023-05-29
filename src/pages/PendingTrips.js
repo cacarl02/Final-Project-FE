@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import BookingForm from '../components/BookingForm'
 
 const PendingTrips = (props) => {
-    const { loginToken, userData, bookConfirm, setBookConfirm } = props
+    const { loginToken, userData, bookConfirm, setBookConfirm, setUserData } = props
     const [fetchedPendingTrips, setFetchedPendingTrips] = useState([])
 
     const [showForm, setShowForm] = useState(false)
@@ -76,7 +76,8 @@ const PendingTrips = (props) => {
                 selectedPendingTrip={selectedPendingTrip} 
                 userData={userData} 
                 loginToken={loginToken}
-                setBookConfirm={setBookConfirm} />}
+                setBookConfirm={setBookConfirm}
+                setUserData={setUserData} />}
         </div>
     )
 }

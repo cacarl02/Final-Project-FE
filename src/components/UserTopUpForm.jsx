@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { AiOutlineClose } from 'react-icons/ai'
 
 const TopUpForm = (props) => {
-    const { loginToken, settingsData, setTopUpFormPopup } = props
+    const { loginToken, setUserData, settingsData, setTopUpFormPopup } = props
     const [addbalance, setAddBalance] = useState('')
     const [fetchedMessage, setFetchedMessage] = useState('')
     const patchBalance = async (e) => {
@@ -21,6 +21,7 @@ const TopUpForm = (props) => {
             const data = await response.json()
             setFetchedMessage(data.message ? data.message : data.error)
             setTopUpFormPopup(data.error ? true : false)
+            setUserData(data.user)
         }
         catch(error){
             console.error(error)

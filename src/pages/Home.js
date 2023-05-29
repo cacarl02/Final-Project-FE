@@ -3,14 +3,14 @@ import Bookings from "../components/Bookings"
 import Trips from "../components/Trips"
 
 const Home = (props) => {
-    const { userData, loginToken } = props
+    const { userData, loginToken, setUserData } = props
     const RenderHome = () => {
         if(userData.role === 'admin') {
             return <Admin userData={userData} loginToken={loginToken} />
         } else if(userData.role === 'operator') {
-            return <Trips loginToken={loginToken} />
+            return <Trips loginToken={loginToken} setUserData={setUserData} />
         } else if (userData.role === 'commuter') {
-            return <Bookings userData={userData} loginToken={loginToken} />
+            return <Bookings userData={userData} loginToken={loginToken} setUserData={setUserData} />
         } else {
             return(
                 <>

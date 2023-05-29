@@ -12,6 +12,8 @@ function Navbar(props) {
         headers : {"Content-type": "application/json"}
       })
       setLoginToken('')
+      localStorage.removeItem('user')
+      localStorage.removeItem('token')
       navigate('/')
     }
     catch(error){
@@ -25,7 +27,7 @@ function Navbar(props) {
       <div className='flex items-center space-x-4'>
           <Link to='/' className='text-red-500 text-3xl mr-10'><FaBusAlt /></Link>
           {
-            userData.role != 'admin' &&
+            userData.role != 'admin' || userData.is_verified &&
             <>
               <Link to="/pending_trips" className='text-white hover:text-gray-200'>Pending Trips</Link>
               <Link to="/history" className='text-white hover:text-gray-200'>History</Link>      

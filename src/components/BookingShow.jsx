@@ -1,13 +1,17 @@
 import React from 'react'
 
 const BookingShow = (props) => {
-    const { loginToken, selectedBooking, setSelectedBooking, setShowBooking } = props
+    const { loginToken, selectedBooking, setSelectedBooking, setShowBooking, setUserData } = props
 
     const changeBookingStatus = (status) => {
             setSelectedBooking(prevBooking => ({
                 ...prevBooking,
                 status: status
             }));
+            setUserData(prevData => ({
+                ...prevData,
+                balance: parseFloat(selectedBooking.amount) + parseFloat(prevData.balance)
+            }))
             patchBookingStatus(status)
     }
 
