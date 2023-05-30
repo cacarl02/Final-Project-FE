@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 
 const Signup = () => {
     const [signupEmail, setSignupEmail] = useState("");
@@ -8,6 +8,8 @@ const Signup = () => {
     const [emailError, setEmailError] = useState("");
     const [passwordError, setPasswordError] = useState("");
     const [passwordConfirmationError, setSignupPasswordConfirmationError] = useState("");
+
+    const navigate = useNavigate()
     const handleSubmit = async (e) => {
         e.preventDefault()
 
@@ -24,9 +26,8 @@ const Signup = () => {
             setEmailError(signupData.email ? signupData.email : '')
             setPasswordError(signupData.password ? signupData.password : '')
             setSignupPasswordConfirmationError(signupData.password_confirmation ? signupData.password_confirmation : '')
-
             if(signupData.data) {
-
+                navigate('/')
             }
         }
         catch(error){
@@ -50,7 +51,7 @@ const Signup = () => {
                                     type='email' 
                                 />
                             </div>
-                            <span>{emailError}</span>
+                            <span className='text-red-500'>{emailError}</span>
                             <div>
                                 <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Password:</label>
                                 <input
@@ -61,7 +62,7 @@ const Signup = () => {
                                     type='password'
                                 />
                             </div>
-                            <span>{passwordError}</span>
+                            <span className='text-red-600'>{passwordError}</span>
                             <div>
                                 <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Password Confirmation:</label>
                                 <input
@@ -72,7 +73,7 @@ const Signup = () => {
                                     type='password'
                                 />
                             </div>
-                            <span>{passwordConfirmationError}</span>
+                            <span className='text-red-500'>{passwordConfirmationError}</span>
                             <button type="submit" className='w-full text-white bg-primary-600 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800'>Signup</button>
                         </form>
                         <div>

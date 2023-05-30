@@ -46,7 +46,7 @@ const Bookings = (props) => {
                     (
                         <div key={obj.id} 
                             onClick={() => getBookingDetails(obj)}
-                            className="p-4 bg-gray-50 dark:bg-gray-700 mx-5 rounded-lg shadow mb-4 grid grid-cols-2 text-center text-gray-300 cursor-pointer"
+                            className="p-4 bg-gray-50 dark:bg-gray-700 rounded-lg shadow m-4 grid grid-cols-2 text-center text-gray-300 cursor-pointer"
                         >
                             <div>{obj.start.charAt(0).toUpperCase() + obj.start.slice(1)}</div>
                             <div>Departure: {new Date(obj.departure).toLocaleString([], format)}</div>

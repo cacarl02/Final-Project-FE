@@ -55,7 +55,7 @@ const Trips = (props) => {
                   <div
                     key={obj.id}
                     onClick={() => getTripDetails(obj)}
-                    className="p-4 bg-gray-50 dark:bg-gray-700 mx-5 rounded-lg shadow mb-4 grid grid-cols-2 text-center text-white cursor-pointer"
+                    className="p-4 bg-gray-50 dark:bg-gray-700 rounded-lg shadow m-4 grid grid-cols-2 text-center text-white cursor-pointer"
                   >
                     <div className="font-bold">
                       {obj.start.charAt(0).toUpperCase() + obj.start.slice(1)} to{' '}

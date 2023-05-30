@@ -59,38 +59,36 @@ const Admin = (props) => {
 
     const Users = () => {
         return(
-            <>
-                <div>
-                    <div class="flex justify-center">
-                        <table className="divide-y divide-gray-500">
-                            <thead className="bg-gray-800">
-                                <tr>
-                                <th className="py-2 px-4 text-left font-medium text-gray-400">ID</th>
-                                <th className="py-2 px-4 text-left font-medium text-gray-400">Email</th>
-                                <th className="py-2 px-4 text-left font-medium text-gray-400">Verified</th>
+            <div className="h-80 overflow-y-scroll overflow-hidden">
+                <div class="flex justify-center">
+                    <table className="divide-y divide-gray-500">
+                        <thead className="bg-gray-800">
+                            <tr>
+                            <th className="py-2 px-4 text-left font-medium text-gray-400">ID</th>
+                            <th className="py-2 px-4 text-left font-medium text-gray-400">Email</th>
+                            <th className="py-2 px-4 text-left font-medium text-gray-400">Verified</th>
+                            </tr>
+                        </thead>
+                        <tbody className="bg-gray-800 divide-y divide-gray-600">
+                            {userList && userList.length ? (
+                            userList.map((obj) => (
+                                <tr key={obj.id} onClick={() => getSelectedUser(obj)} className="cursor-pointer">
+                                    <td className="py-2 px-4 font-medium text-gray-400">{obj.id}</td>
+                                    <td className="py-2 px-4 font-medium text-gray-400">{obj.email}</td>
+                                    <td className={`py-2 px-4 font-medium ${obj.is_verified ? 'text-green-700' : 'text-red-700'}`}>{obj.is_verified.toString()}</td>
                                 </tr>
-                            </thead>
-                            <tbody className="bg-gray-800 divide-y divide-gray-600">
-                                {userList && userList.length ? (
-                                userList.map((obj) => (
-                                    <tr key={obj.id} onClick={() => getSelectedUser(obj)} className="cursor-pointer">
-                                        <td className="py-2 px-4 font-medium text-gray-400">{obj.id}</td>
-                                        <td className="py-2 px-4 font-medium text-gray-400">{obj.email}</td>
-                                        <td className={`py-2 px-4 font-medium ${obj.is_verified ? 'text-green-700' : 'text-red-700'}`}>{obj.is_verified.toString()}</td>
-                                    </tr>
-                                ))
-                                ) : (
-                                <tr>
-                                    <td colSpan="4" className="py-4 px-4 text-gray-400 text-center">
-                                    No users yet.
-                                    </td>
-                                </tr>
-                                )}
-                            </tbody>
-                        </table>
-                    </div>
+                            ))
+                            ) : (
+                            <tr>
+                                <td colSpan="4" className="py-4 px-4 text-gray-400 text-center">
+                                No users yet.
+                                </td>
+                            </tr>
+                            )}
+                        </tbody>
+                    </table>
                 </div>
-            </>
+            </div>
         )
     }
     return(

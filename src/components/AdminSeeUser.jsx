@@ -28,7 +28,7 @@ const AdminSeeUser = (props) => {
         </div>
       </div>
       <div>
-          <div className="text-3xl flex pb-5">
+          <div className="text-3xl flex justify-center pb-5">
             <UserNameData />
             {selectedUser.is_verified && <MdVerified className='text-yellow-500 ml-3' />}
           </div>

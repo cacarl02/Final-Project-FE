@@ -49,7 +49,7 @@ const PendingTrips = (props) => {
                 {
                     fetchedPendingTrips && fetchedPendingTrips.length ? fetchedPendingTrips.map((obj) => 
                     (
-                        <div key={obj.id} onClick={() => getPendingTripsData(obj)} className='p-4 bg-gray-50 dark:bg-gray-700 mx-5 rounded-lg shadow m-4 grid grid-cols-2 text-center cursor-pointer'>
+                        <div key={obj.id} onClick={() => getPendingTripsData(obj)} className='p-4 mt-4 bg-gray-50 dark:bg-gray-700 mx-5 rounded-lg shadow m-4 grid grid-cols-2 text-center cursor-pointer'>
                             <div>{obj.start.charAt(0).toUpperCase() + obj.start.slice(1)} to {obj.end.charAt(0).toUpperCase() + obj.end.slice(1)}</div>
                             <div>{new Date(obj.departure).toLocaleString([], format)}</div>
                             <div className={`${obj.capacity - obj.total_passengers >5 ? 'text-green-500' : 'text-red-500'}`}>
