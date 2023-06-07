@@ -35,10 +35,6 @@ const Trips = (props) => {
         if(tripComplete) {
             setTripComplete(false)
         }
-        const interval = setInterval(fetchTrip, 5000)
-        return () => {
-            clearInterval(interval)
-        }
     }, [tripComplete, selectedTrip.status])
 
     const getTripDetails = (obj) => {

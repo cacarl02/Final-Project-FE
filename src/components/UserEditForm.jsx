@@ -5,14 +5,48 @@ function UserEditForm(props) {
     const { settingsData, loginToken, setUserFormPopup, setUserData, userData } = props
     const [firstname, setFirstname] = useState(`${settingsData.firstname}`);
     const [lastname, setLastname] = useState(`${settingsData.lastname}`);
-    const [image, setImage] = useState(settingsData.photo_data);
     const [role, setRole] = useState(`${settingsData.role}`);
-
+    
     const [fetchedMessage, setFetchedMessage] = useState('')
+    
+    const [image, setImage] = useState(`${settingsData.photo_data}`);
+    const [previewUrl, setPreviewUrl] = useState('');
 
+    const handleImageChange = (event) => {
+      const selectedImage = event.target.files[0];
+      setImage(selectedImage);
+  
+      if (selectedImage) {
+        const reader = new FileReader();
+        reader.onload = () => {
+          setPreviewUrl(reader.result);
+        };
+        reader.readAsDataURL(selectedImage);
+      }
+    };
+    
     const formSubmit = async (e) => {
         e.preventDefault()
+        
+        const formData = new FormData();
+        formData.append('avatar', image);
+        
         try{
+            const response = await fetch (`http://localhost:3001/users/${userData.id}`, {
+                method : "PATCH",
+                headers : {
+                    "Content-type": "application/json",
+                    "Authorization" : `${loginToken}`
+                },
+                body: formData
+            })
+        }
+        catch(error){
+            console.error(error)
+        }
+
+        try{
+      
             const response = await fetch (`http://localhost:3001/users/${userData.id}`, {
                 method : "PATCH",
                 headers : {
@@ -22,7 +56,6 @@ function UserEditForm(props) {
                 body: JSON.stringify({
                     firstname: firstname,
                     lastname: lastname,
-                    image: image,
                     role: role
                 })
             })
@@ -63,9 +96,23 @@ function UserEditForm(props) {
                 className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Photo:</label>
             <input
                 type="file"
-                value={image}
-                onChange={(e) => setImage(e.target.files[0])}
+                multiple={false}
+                onChange={handleImageChange}
             />
+            {
+                previewUrl && (
+                    <div>
+                      <img
+                        alt="not found"
+                        width={"250px"}
+                        value={image}
+                        src={previewUrl}
+                      />
+                      <br />
+                      <button onClick={() => setImage(null)}>Remove</button>
+                    </div>
+                )
+            }
             <label 
                 className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Role: </label>
             <select

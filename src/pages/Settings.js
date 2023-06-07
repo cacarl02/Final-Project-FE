@@ -48,7 +48,7 @@ const Settings = (props) => {
     return(
       <div className='py-10 px-4 bg-gray-50 dark:bg-gray-700 m-5 rounded-lg shadow text-white grid grid-cols-2'>
         <div className='px-3'>
-          <img src={settingsData.photoData} alt='' />
+          <img src={settingsData.photo_data} alt='' />
           <div>image</div>
           <div>Date Created: {formattedDate}</div>
           <div className='p-6 mt-4 bg-gray-50 dark:bg-gray-600 rounded-lg inline-flex'>

@@ -7,7 +7,7 @@ function Navbar(props) {
   const navigate = useNavigate();
   const logout = async () => {
     try{
-      await fetch('http://localhost:3001/logout', {
+      await fetch('https://para-app-fe.onrender.com/logout', {
         method : "POST",
         headers : {"Content-type": "application/json"}
       })
@@ -27,7 +27,7 @@ function Navbar(props) {
       <div className='flex items-center space-x-4'>
           <Link to='/' className='text-red-500 text-3xl mr-10'><FaBusAlt /></Link>
           {
-            userData.role != 'admin' || userData.is_verified &&
+            (userData.role && userData.is_verified) && userData.role != 'admin' &&
             <>
               <Link to="/pending_trips" className='text-white hover:text-gray-200'>Pending Trips</Link>
               <Link to="/history" className='text-white hover:text-gray-200'>History</Link>      

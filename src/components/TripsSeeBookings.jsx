@@ -16,8 +16,6 @@ const TripsSeeBookings = (props) => {
             })
             const data = await response.json()
             setSelectedTripData(data)
-            console.log(selectedTrip)
-
         } catch (error) {
             console.error(error)
         }
