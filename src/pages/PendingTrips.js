@@ -11,7 +11,7 @@ const PendingTrips = (props) => {
     const pendingTripsList = async () => {
 
         try {
-            const response = await fetch ('http://localhost:3001/trips/pending_trips', {
+            const response = await fetch ('https://final-project-app.onrender.com/trips/pending_trips', {
                 method : "GET",
                 headers : {
                     "Content-type": "application/json",

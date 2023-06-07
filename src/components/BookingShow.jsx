@@ -17,7 +17,7 @@ const BookingShow = (props) => {
 
     const patchBookingStatus = async (status) => {
         try {
-            await fetch (`http://localhost:3001/bookings/${selectedBooking.id}`, {
+            await fetch (`https://final-project-app.onrender.com/bookings/${selectedBooking.id}`, {
                 method : "PATCH",
                 headers : {
                     "Content-type": "application/json",

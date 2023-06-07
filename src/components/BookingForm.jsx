@@ -43,7 +43,7 @@ const BookingForm = (props) => {
         e.preventDefault()
 
         try{
-            const response = await fetch ('http://localhost:3001/bookings', {
+            const response = await fetch ('https://final-project-app.onrender.com/bookings', {
                 method : "POST",
                 headers : {
                     "Content-type": "application/json",

@@ -15,7 +15,7 @@ const Trips = (props) => {
 
     const fetchTrip = async () => {
         try{
-            const response = await fetch ('http://localhost:3001/trips', {
+            const response = await fetch ('https://final-project-app.onrender.com/trips', {
                 method : "GET",
                 headers : {
                     "Content-type": "applciation/json",

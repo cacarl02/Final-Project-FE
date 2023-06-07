@@ -32,7 +32,7 @@ function UserEditForm(props) {
         formData.append('avatar', image);
         
         try{
-            const response = await fetch (`http://localhost:3001/users/${userData.id}`, {
+            const response = await fetch (`https://final-project-app.onrender.com/users/${userData.id}`, {
                 method : "PATCH",
                 headers : {
                     "Content-type": "application/json",
@@ -47,7 +47,7 @@ function UserEditForm(props) {
 
         try{
       
-            const response = await fetch (`http://localhost:3001/users/${userData.id}`, {
+            const response = await fetch (`https://final-project-app.onrender.com/users/${userData.id}`, {
                 method : "PATCH",
                 headers : {
                     "Content-type": "application/json",

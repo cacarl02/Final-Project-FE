@@ -8,7 +8,7 @@ const TopUpForm = (props) => {
     const patchBalance = async (e) => {
         e.preventDefault()
         try{
-            const response = await fetch (`http://localhost:3001/users/${settingsData.id}/topup_balance`, {
+            const response = await fetch (`https://final-project-app.onrender.com/users/${settingsData.id}/topup_balance`, {
                 method : "PATCH",
                 headers : {
                     "Content-type": "application/json",

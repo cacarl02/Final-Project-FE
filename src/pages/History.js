@@ -10,10 +10,10 @@ const History = (props) => {
         var url = ''
 
         if(userData.role === 'operator') {
-            url = `http://localhost:3001/trips/${userData.id}/history`
+            url = `https://final-project-app.onrender.com/trips/${userData.id}/history`
         }
         if(userData.role === 'commuter') {
-            url = `http://localhost:3001/bookings/${userData.id}/history`
+            url = `https://final-project-app.onrender.com/bookings/${userData.id}/history`
         }
         try{
             const response = await fetch (url, {

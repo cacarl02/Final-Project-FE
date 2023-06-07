@@ -12,7 +12,7 @@ const Bookings = (props) => {
     const fetchBooking = async() => {
 
         try{
-            const response = await fetch ('http://localhost:3001/bookings', {
+            const response = await fetch ('https://final-project-app.onrender.com/bookings', {
                 method : "GET",
                 headers : {
                     "Content-type": "application/json",

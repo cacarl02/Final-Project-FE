@@ -13,7 +13,7 @@ const Admin = (props) => {
     const getUserList = async() => {
 
         try{
-            const response = await fetch ('http://localhost:3001/users', {
+            const response = await fetch ('https://final-project-app.onrender.com/users', {
                 method : "GET",
                 headers : {
                     "Content-type" : "application/json",
@@ -32,7 +32,7 @@ const Admin = (props) => {
 
     const verifyUser = async(id) => {
         try{
-            const response = await fetch (`http://localhost:3001/admin/${id}/verify_user`, {
+            const response = await fetch (`https://final-project-app.onrender.com/admin/${id}/verify_user`, {
                 method : "PATCH",
                 headers : {
                     "Content-type": "application/json",

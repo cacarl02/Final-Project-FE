@@ -10,7 +10,7 @@ const Settings = (props) => {
     const [topUpFormPopup, setTopUpFormPopup] = useState(false)
     const fetchsettingsData = async () => {
       try{
-        const response = await fetch (`http://localhost:3001/users/${userData.id}`, {
+        const response = await fetch (`https://final-project-app.onrender.com/users/${userData.id}`, {
             method : "GET",
             headers : {
                 "Content-type": "application/json",

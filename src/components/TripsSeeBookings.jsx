@@ -7,7 +7,7 @@ const TripsSeeBookings = (props) => {
     const fetchSelectedTrip = async () => {
 
         try {
-            const response = await fetch (`http://localhost:3001/trips/${selectedTrip.id}/bookings_on_trip`, {
+            const response = await fetch (`https://final-project-app.onrender.com/trips/${selectedTrip.id}/bookings_on_trip`, {
                 method : "GET",
                 headers : {
                     "Content-type": "application/json",
@@ -41,7 +41,7 @@ const TripsSeeBookings = (props) => {
 
     const patchTripStatus = async (status) => {
         try {
-            await fetch (`http://localhost:3001/trips/${selectedTrip.id}`, {
+            await fetch (`https://final-project-app.onrender.com/trips/${selectedTrip.id}`, {
                 method : "PATCH",
                 headers : {
                     "Content-type" : "application/json",

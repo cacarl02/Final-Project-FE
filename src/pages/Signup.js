@@ -14,7 +14,7 @@ const Signup = () => {
         e.preventDefault()
 
         try{
-            const response = await fetch('http://localhost:3001/signup', {
+            const response = await fetch('https://final-project-app.onrender.com/signup', {
                 method : "POST",
                 headers : {
                     'Content-Type': 'application/json'

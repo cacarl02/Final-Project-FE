@@ -85,7 +85,7 @@ const TripForm = (props) => {
         e.preventDefault()
 
         try{
-            const response = await fetch ('http://localhost:3001/trips', {
+            const response = await fetch ('https://final-project-app.onrender.com/trips', {
                 method : "POST",
                 headers : {
                     "Content-type": "application/json",
