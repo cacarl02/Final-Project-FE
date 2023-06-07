@@ -7,7 +7,7 @@ function Navbar(props) {
   const navigate = useNavigate();
   const logout = async () => {
     try{
-      await fetch('https://para-app-fe.onrender.com/logout', {
+      await fetch('https://final-project-app.onrender.com/logout', {
         method : "POST",
         headers : {"Content-type": "application/json"}
       })
