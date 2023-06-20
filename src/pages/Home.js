@@ -17,7 +17,7 @@ const Home = (props) => {
                     <div>Set your user details on the settings and wait for admin approval.</div>
                 </>
             )
-        } else if (userData.role && !userData.is_verified) {
+        } else if (userData.role === 'operator' || userData.role === 'commuter' && !userData.is_verified) {
             return(
                 <div className="p-4 mt-4 bg-gray-50 dark:bg-gray-700 mx-5 rounded-lg shadow mb-4 text-center text-white">
                     <div>User updated. Please wait for admin approval.</div>
